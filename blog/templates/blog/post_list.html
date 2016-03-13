@@ -1,24 +1,12 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title>Pls work.</title>
-</head>
-<body>
-    <div>
-        <h1><a href="https://500px.com/photo/127499069/gold-of-dolomites-by-anton-rostovskiy?utm_source=momentum">It's working and I dunno why </a></h1>
-    </div>
-    <div>
-        <p>Yay. I can't even even.</p>
-    </div>
-    <div>
-        {% for post in posts %}
-            <div>
-                <p>published: {{ post.published_date }}</p>
-                <h1><a href="">{{ post.title }}</a></h1>
-                <p>{{ post.text|linebreaks }}</p>
+{% extends 'blog/base.html' %}
+{% block content %}
+    {% for post in posts %}
+        <div class="post">
+            <div class="date">
+                {{ post.published_date }}
             </div>
-        {% endfor %}
-    </div>
-</body>
-</html>
+            <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
+            <p>{{ post.text|linebreaks }}</p>
+        </div>
+    {% endfor %}
+{% endblock content %}
